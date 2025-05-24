@@ -14,7 +14,24 @@ spec:
         app: guestbook-ui
     spec:
       containers:
-      - image: quay.io/argoprojlabs/argocd-e2e-container:0.2
-        name: guestbook-ui
+      - name: guestbook-ui
+        image: quay.io/argoprojlabs/argocd-e2e-container:0.2
         ports:
         - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+          timeoutSeconds: 2
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 3
+          timeoutSeconds: 2
+
