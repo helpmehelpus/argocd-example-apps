@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
       - name: guestbook-ui
-        image: 
-        ports: nginx:latest
+        image: nginx:latest
+        ports: 
         - containerPort: 80
         livenessProbe:
           httpGet:
